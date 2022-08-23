@@ -34,12 +34,13 @@ public class Animation {
      */
     private Easing easing = Easings.NONE;
     /**
-     * Experimental thing
+     * Consoles animation things
      */
     private boolean debug = false;
 
     /**
      * Main method, use to animate value to something.
+     *
      * @param valueTo toValue, value to which animation will go
      * @param duration duration, with which animation will animate
      */
@@ -49,6 +50,7 @@ public class Animation {
 
     /**
      * Main method, use to animate value to something.
+     *
      * @param valueTo toValue, value to which animation will go
      * @param duration duration, with which animation will animate
      * @param safe means will it update when animation isAlive or with the same targetValue
@@ -59,6 +61,7 @@ public class Animation {
 
     /**
      * Main method, use to animate value to something
+     *
      * @param valueTo toValue, value to which animation will go
      * @param duration duration, with which animation will animate
      * @param easing animation type, like formula for animation
@@ -66,7 +69,7 @@ public class Animation {
      */
     public void animate(double valueTo, double duration, Easing easing, boolean safe) {
         if(safe && isAlive() && (valueTo == getFromValue() || valueTo == getToValue() || valueTo == getValue())) {
-            System.out.println("Animate method has been cancelled due to safe and valueTo == valueTo before");
+            if(isDebug()) System.out.println("Animate cancelled due to target val equals from val");
             return;
         }
 
@@ -75,11 +78,13 @@ public class Animation {
         setStart(System.currentTimeMillis());
         setDuration(duration * 1000);
         setEasing(easing);
-        System.out.println("Animate method has been called! Animating: \nto value: " + getToValue() + "\nfrom value: " + getValue() + "\nduration: " + getDuration() + "\neasing: " + getEasing());
+
+        if(isDebug()) System.out.println("#animate {\n    to value: " + getToValue() + "\n    from value: " + getValue() + "\n    duration: " + getDuration() + "\n}");
     }
 
     /**
-     * Important method, use to update value. WARNING: IF U WILL NOT UPDATE, ANIMATION WILL NOT WORKS
+     * Important method, use to update value. WARNING: IF U WILL NOT UPDATE, ANIMATION WILL NOT WORK
+     *
      * @return returns if animation isAlive()
      */
     public boolean update() {
@@ -98,6 +103,7 @@ public class Animation {
 
     /**
      * Use if u want check if animation is animating
+     *
      * @return returns if animation is animating
      */
     public boolean isAlive() {
@@ -106,6 +112,7 @@ public class Animation {
 
     /**
      * Use if u want check if animation is not animating
+     *
      * @return returns if animation is animating
      */
     public boolean isDone() {
@@ -114,6 +121,7 @@ public class Animation {
 
     /**
      * Use if u want to get the current part of animation (from 0.0 to 1.0, like 0% and 100%)
+     *
      * @return returns animation part
      */
     public double calculatePart() {
@@ -125,13 +133,6 @@ public class Animation {
      */
     public double interpolate(double start, double end, double pct) {
         return start + (end - start) * pct;
-    }
-
-    /**
-     * Basic back interpolation formula (idk why its here, why not?)
-     */
-    public double normalize(double start, double end, double value) {
-        return (end - start) / (value - start);
     }
 
     public long getStart() {
@@ -189,4 +190,5 @@ public class Animation {
     public void setDebug(boolean debug) {
         this.debug = debug;
     }
+
 }

@@ -8,7 +8,7 @@ import ru.hogoshi.util.Easings;
 import java.awt.*;
 
 /**
- * Use if u need to animation the color value
+ * Use if u need animate the color value
  */
 public class ColorAnimation {
 

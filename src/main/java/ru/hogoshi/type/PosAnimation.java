@@ -6,7 +6,7 @@ import ru.hogoshi.util.Easings;
 import ru.hogoshi.util.V2;
 
 /**
- * Use if u need to animation the position
+ * Use if u need animate the position
  */
 public class PosAnimation {
 
