@@ -1,5 +1,8 @@
 package ru.hogoshi.bezier;
 
+import lombok.Data;
+
+@Data
 public class Point {
 
     private double x;
@@ -17,13 +20,6 @@ public class Point {
 
     public Point copy() {
         return new Point(this);
-    }
-
-    public Point move(double x, double y) {
-        setX(x);
-        setY(y);
-
-        return this;
     }
 
     public Point scale(double x, double y) {
@@ -61,19 +57,4 @@ public class Point {
         return this;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 }

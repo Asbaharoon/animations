@@ -11,12 +11,12 @@ public class CubicBezier extends Bezier {
         double dt2 = dt * dt;
         double t2 = t * t;
 
-        Point temp = getPoint2().copy();
+        Point temp = getStartPoint().copy();
 
         return getStart().copy()
                 .scale(dt2, dt)
                 .add(temp.scale(3 * dt2 * t))
-                .add(temp.set(getPoint3()).scale(3 * dt * t2))
+                .add(temp.set(getEndPoint()).scale(3 * dt * t2))
                 .add(temp.set(getEnd()).scale(t2 * t))
                 .getY();
     }
@@ -30,14 +30,14 @@ public class CubicBezier extends Bezier {
 
         public Builder() {}
 
-        public Builder setPoint2(Point point) {
-            bezier.setPoint2(point);
+        public Builder startPoint(Point point) {
+            bezier.setStartPoint(point);
 
             return this;
         }
 
-        public Builder setPoint3(Point point) {
-            bezier.setPoint3(point);
+        public Builder endPoint(Point point) {
+            bezier.setEndPoint(point);
 
             return this;
         }
